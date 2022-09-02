@@ -10,6 +10,7 @@ import asyncio
 TOKEN = open('.env', 'r').read().replace("\n", "")
 
 name = 'DinoBot'
+alias = "dino"
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -66,9 +67,10 @@ class MyClient(discord.Client):
             return
 
         # go on to chat model
-        elif m.startswith(name) or m.startswith(name.lower()) or m.startswith('Dinobot'):
+        elif m_Lower.startswith(name.lower()) or m_Lower.startswith(alias):
             #print(m[8:len(m)])
-            returnText = await chatbot.async_chat(m[8:len(m)])
+            
+            returnText = await chatbot.async_chat(m_Lower[8:len(m)])
             #print(returnText)
             await message.channel.send(returnText.replace("cleverbot", 'DinoBot').replace("CleverBot", "DinoBot").replace("Cleverbot", "DinoBot"))
 
