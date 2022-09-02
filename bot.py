@@ -27,7 +27,7 @@ class MyClient(discord.Client):
         m = str(message.content)
 
         # The famous "Im" command most bots have
-        if (('i\'m ' in m) or ('im ' in m) or (' i\'m ' in m) or (' im ' in m)):
+        if (('i\'m ' in m_Lower) or ('im ' in m_Lower) or (' i\'m ' in m_Lower) or (' im ' in m_Lower) or ('i am ' in m_Lower) or (' i am ' in m_Lower)):
 
             if 'im dinobot' in m_Lower:
                 await message.channel.send("Your not DinoBot, I'm DinoBot!")
@@ -56,7 +56,7 @@ class MyClient(discord.Client):
 
 
         # Silly message to "im" only
-        elif m == "im":
+        elif m_Lower == "im" or m_Lower == 'i am':
             await message.channel.send("Who are you really?")
             return
 
