@@ -2,12 +2,14 @@
 
 import discord
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
+
 import random
 import chatbot
 import asyncio
-
-
-TOKEN = open('.env', 'r').read().replace("\n", "")
 
 name = 'DinoBot'
 alias = "dino"
