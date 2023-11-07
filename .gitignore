@@ -4,3 +4,4 @@ env.py
 chatterbot/
 videos/
 venv/
+__pycache__/
