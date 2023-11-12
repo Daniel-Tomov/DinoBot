@@ -37,6 +37,13 @@ async def tty(interaction):
                                             ```bash\n/bin/sh -i```
                                             """.replace("    ", ""), ephemeral=True)
 
+@tree.command(name="lolbins", description="Get websites for Living Off the Land (LOL) binaries", guilds=servers)
+async def lolbins(interaction):
+    await interaction.response.send_message(f"""
+                                            Windows: https://lolbas-project.github.io/
+                                            Linux: https://gtfobins.github.io/
+                                            """.replace("    ", ""), ephemeral=True)
+
 @tree.command(name="github", description="DinoBot Github", guilds=servers)
 async def modulus(interaction):
     await interaction.response.send_message("https://github.com/Daniel-Tomov/DinoBot", ephemeral=True)
