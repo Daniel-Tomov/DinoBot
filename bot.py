@@ -1,6 +1,8 @@
 ######  Copyright 2023 Daniel Tomov  #######
 import discord
 import os
+import random
+import asyncio
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -52,6 +54,7 @@ async def modulus(interaction):
 
 @client.event
 async def on_ready():
+    client.loop.create_task(presense())
     for server in servers:
         await tree.sync(guild=server)
     print(f'{client.user} is ready and listening')
@@ -67,6 +70,31 @@ async def on_message(message):
 
 ### Functions ###
 async def presense():
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name='John Hammond'))
+    await client.wait_until_ready()
+
+    presense_states = [
+        discord.Activity(type=discord.ActivityType.watching, name='John Hammond'),
+        discord.Activity(type=discord.ActivityType.watching, name='The PC Security Channel'),
+        discord.Activity(type=discord.ActivityType.watching, name='NetworkChuck'),
+        discord.Activity(type=discord.ActivityType.watching, name='HackerSploit'),
+        discord.Activity(type=discord.ActivityType.watching, name='Infosec'),
+        discord.Activity(type=discord.ActivityType.watching, name='CompuerPhile'),
+        discord.Activity(type=discord.ActivityType.watching, name='Hak5'),
+        discord.Activity(type=discord.ActivityType.playing, name='with a Flipper Zero'),
+        discord.Activity(type=discord.ActivityType.playing, name='Vulnhub'),
+        discord.Activity(type=discord.ActivityType.playing, name='picoCTF'),
+        discord.Activity(type=discord.ActivityType.playing, name='Hack The Box'),
+        discord.Activity(type=discord.ActivityType.playing, name='TryHackMe'),
+        discord.Activity(type=discord.ActivityType.playing, name='CyberStart'),
+        discord.Activity(type=discord.ActivityType.listening, name='The WAN Show'),
+        discord.CustomActivity(name='Preparing for CyberForge'),
+        ]
+    
+    while not client.is_closed():
+        status = random.choice(presense_states)
+        await client.change_presence( activity=status )
+        await asyncio.sleep(3600)
+
+
 
 client.run(token=TOKEN)
