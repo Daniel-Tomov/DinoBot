@@ -47,7 +47,7 @@ async def lolbins(interaction):
                                             """.replace("    ", ""), ephemeral=True)
 
 @tree.command(name="github", description="DinoBot Github", guilds=servers)
-async def modulus(interaction):
+async def github(interaction):
     await interaction.response.send_message("https://github.com/Daniel-Tomov/DinoBot", ephemeral=True)
 
 ### Listeners ###
