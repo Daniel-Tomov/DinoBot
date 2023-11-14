@@ -3,6 +3,7 @@ import discord
 import os
 import random
 import asyncio
+import datetime, time
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -50,6 +51,10 @@ async def lolbins(interaction):
 async def github(interaction):
     await interaction.response.send_message("https://github.com/Daniel-Tomov/DinoBot", ephemeral=True)
 
+@tree.command(name="uptime", description="Uptime of Dinobot", guilds=servers)
+async def uptime(interaction):
+    global startTime
+    await interaction.response.send_message(str(datetime.timedelta(seconds=int(round(time.time()-startTime)))), ephemeral=True)
 ### Listeners ###
 
 @client.event
@@ -57,6 +62,10 @@ async def on_ready():
     client.loop.create_task(presense())
     for server in servers:
         await tree.sync(guild=server)
+
+    global startTime
+    startTime = time.time()
+    
     print(f'{client.user} is ready and listening')
 
 @client.event
