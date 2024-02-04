@@ -17,7 +17,7 @@ client = discord.Client(intents=intents)
 
 ### Slash Commands ###
 tree = discord.app_commands.CommandTree(client=client)
-servers = [discord.Object(id=1160247666870075422), discord.Object(id=923420517560627272)]
+servers = [discord.Object(id=1160247666870075422), discord.Object(id=923420517560627272), discord.Object(id=1199927068599799860)]
 
 @tree.command(name="ping", description="Gives latency between you and the bot")
 async def ping(interaction):
@@ -93,6 +93,9 @@ async def selfdestruct(interaction, string: str):
 @client.event
 async def on_ready():
     client.loop.create_task(presence())
+
+    for server in servers:
+        await tree.sync(guild=server)
 
     global startTime
     startTime = time.time()
