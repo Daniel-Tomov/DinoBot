@@ -16,3 +16,8 @@ Create a Bot in the Discord Developer Portal and add the Bot Token to a file cal
   - reverse shell creater
   - tty shell syntax
   - [github](https://github.com/Daniel-Tomov/DinoBot)
+  - MD5
+  - SHA1
+  - SHA256
+  - SHA512
+  - Delete messages after period of time

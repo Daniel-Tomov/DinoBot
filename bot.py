@@ -4,6 +4,7 @@ import os
 import random
 import asyncio
 import datetime, time
+import hashlib
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -51,10 +52,42 @@ async def lolbins(interaction):
 async def github(interaction):
     await interaction.response.send_message("https://github.com/Daniel-Tomov/DinoBot", ephemeral=True)
 
+@tree.command(name="md5", description="Get the MD5 hash for a string")
+async def md5(interaction, string: str):
+    await interaction.response.send_message(hashlib.md5(string.encode('utf-8')).hexdigest(), ephemeral=True)
+
+@tree.command(name="sha1", description="Get the SHA1 hash for a string")
+async def sha1(interaction, string: str):
+    await interaction.response.send_message(hashlib.sha1(string.encode('utf-8')).hexdigest(), ephemeral=True)
+
+@tree.command(name="sha256", description="Get the SHA256 hash for a string")
+async def sha256(interaction, string: str):
+    await interaction.response.send_message(hashlib.sha256(string.encode('utf-8')).hexdigest(), ephemeral=True)
+
+@tree.command(name="sha512", description="Get the SHA512 hash for a string")
+async def sha512(interaction, string: str):
+    await interaction.response.send_message(hashlib.sha512(string.encode('utf-8')).hexdigest(), ephemeral=True)
+
 @tree.command(name="uptime", description="Uptime of Dinobot")
 async def uptime(interaction):
     global startTime
     await interaction.response.send_message(str(datetime.timedelta(seconds=int(round(time.time()-startTime)))), ephemeral=True)
+
+@tree.command(name="self-destruct", description="Self-destruct a message", guilds=servers)
+async def selfdestruct(interaction, string: str): 
+    await interaction.response.send_message("This message will self-destruct in 5 seconds: \n" + string)
+
+    counter = 5
+    while counter > 1:
+        await asyncio.sleep(1)
+        counter -= 1
+        msg = await interaction.original_response()
+        await msg.edit(content=f"This message will self-destruct in {str(counter)} seconds: \n{string}")
+        
+    await msg.reply("Oh no! This message has self-destructed. You snooze you loose.")
+    await msg.delete()
+    #await msg.edit(content="Oh no! This message has self-destructed. You snooze you loose.")
+
 ### Listeners ###
 
 @client.event
