@@ -85,7 +85,7 @@ async def presence():
         discord.Activity(type=discord.ActivityType.watching, name='NetworkChuck'),
         discord.Activity(type=discord.ActivityType.watching, name='HackerSploit'),
         discord.Activity(type=discord.ActivityType.watching, name='Infosec'),
-        discord.Activity(type=discord.ActivityType.watching, name='CompuerPhile'),
+        discord.Activity(type=discord.ActivityType.watching, name='ComputerPhile'),
         discord.Activity(type=discord.ActivityType.watching, name='Hak5'),
         discord.Activity(type=discord.ActivityType.playing, name='with a Flipper Zero'),
         discord.Activity(type=discord.ActivityType.playing, name='Vulnhub'),
