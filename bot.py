@@ -59,7 +59,7 @@ async def uptime(interaction):
 
 @client.event
 async def on_ready():
-    client.loop.create_task(presense())
+    client.loop.create_task(presence())
 
     global startTime
     startTime = time.time()
@@ -76,10 +76,10 @@ async def on_message(message):
 
 
 ### Functions ###
-async def presense():
+async def presence():
     await client.wait_until_ready()
 
-    presense_states = [
+    presence_states = [
         discord.Activity(type=discord.ActivityType.watching, name='John Hammond'),
         discord.Activity(type=discord.ActivityType.watching, name='The PC Security Channel'),
         discord.Activity(type=discord.ActivityType.watching, name='NetworkChuck'),
@@ -98,7 +98,7 @@ async def presense():
         ]
     
     while not client.is_closed():
-        status = random.choice(presense_states)
+        status = random.choice(presence_states)
         await client.change_presence( activity=status )
         await asyncio.sleep(3600)
 
