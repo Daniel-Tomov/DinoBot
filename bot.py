@@ -18,7 +18,7 @@ client = discord.Client(intents=intents)
 
 ### Slash Commands ###
 tree = discord.app_commands.CommandTree(client=client)
-servers = [discord.Object(id=1160247666870075422), discord.Object(id=923420517560627272), discord.Object(id=1199927068599799860)]
+#servers = [discord.Object(id=1160247666870075422), discord.Object(id=923420517560627272), discord.Object(id=1199927068599799860)]
 
 @tree.command(name="ping", description="Gives latency between you and the bot")
 async def ping(interaction):
@@ -74,7 +74,7 @@ async def uptime(interaction):
     global startTime
     await interaction.response.send_message(str(datetime.timedelta(seconds=int(round(time.time()-startTime)))), ephemeral=True)
 
-@tree.command(name="self-destruct", description="Self-destruct a message", guilds=servers)
+@tree.command(name="self-destruct", description="Self-destruct a message")
 async def selfdestruct(interaction, string: str): 
     await interaction.response.send_message("This message will self-destruct in 5 seconds: \n" + string)
 
@@ -95,8 +95,8 @@ async def selfdestruct(interaction, string: str):
 async def on_ready():
     client.loop.create_task(presence())
 
-    for server in servers:
-        await tree.sync(guild=server)
+    #for server in servers:
+    #    await tree.sync(guild=server)
 
     global startTime
     startTime = time.time()
