@@ -24,5 +24,5 @@ class RSSParser:
 
             if now - entry_time <= time_range:
                 discMessageString = f'Title: {entry.title}\nPublication Date: {entry.published}\nSummary: {entry.summary}'
-                channel = self.client.get_channel(1208824287457321080)
+                channel = await self.client.get_channel(1208824287457321080)
                 await channel.send(discMessageString)
