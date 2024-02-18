@@ -5,6 +5,7 @@ import random
 import asyncio
 import datetime, time
 import hashlib
+from rssparser import RSSParser
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -99,6 +100,8 @@ async def on_ready():
 
     global startTime
     startTime = time.time()
+
+    RSSParser(client)
     
     print(f'{client.user} is ready and listening')
 
