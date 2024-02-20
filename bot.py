@@ -141,7 +141,7 @@ async def presence():
         discord.Activity(type=discord.ActivityType.playing, name='TryHackMe'),
         discord.Activity(type=discord.ActivityType.playing, name='Ghidra'),
         discord.Activity(type=discord.ActivityType.listening, name='The WAN Show'),
-        discord.CustomActivity(name='Preparing for CyberForge'),
+        discord.CustomActivity(name='Preparing for VIVID'),
         discord.CustomActivity(name='Preparing for CyberFusion'),
         discord.CustomActivity(name='Studying for Security+'),
     ]
