@@ -85,6 +85,7 @@ async def selfdestruct(interaction, string: str):
         msg = await interaction.original_response()
         await msg.edit(content=f"This message will self-destruct in {str(counter)} seconds: \n{string}")
         
+    await asyncio.sleep(1)
     await msg.reply("Oh no! This message has self-destructed. You snooze you loose.")
     await msg.delete()
     #await msg.edit(content="Oh no! This message has self-destructed. You snooze you loose.")
